@@ -23,13 +23,13 @@ const generateListQueue = () => {
     let li = document.createElement('li');
     li.className = 'active';
     li.innerText = item;
-    stackList.appendChild(li);
+    queueUL.appendChild(li);
   });
   for (let i=0; i < size; i++) {
     let li = document.createElement('li');
     li.className = 'inactive';
     li.innerHTML = '&nbsp;';
-    stackList.appendChild(li);
+    queueUL.appendChild(li);
   }
 };
 
@@ -47,33 +47,23 @@ const generateWarningQueue = (type) => {
 };
 
 const addToQueue = () => {
-  if(queue.push(queueInput.value) === 'Queue Overflow') {
-    generateWarningQueue('overflow');
-  } else {
-    clearQueueInput();
-    generateListQueue();
-  }
-};
-/*   try {
+  try {
+    queue.enqueue(queueInput.value)
     clearQueueInput();
     generateListQueue();
   } catch (error) {
     generateWarningQueue('overflow')
-  } */
-
-
-const removeFromQueue = () => {
-  if(queue.pop() === 'Queue Underflow'){
-    generateWarningQueue('underflow');
-  } else {
-    generateListQueue();
   }
 };
-/*   try {
+
+const removeFromQueue = () => {
+   try {
+    queue.dequeue()
     generateListQueue();
   } catch (error) {
     generateWarningQueue('underflow')
-  } */
+  } 
+};
 
 
 
